@@ -8,7 +8,7 @@ https://nashamukti.ct.ws/
 
 Overview
 
-Nasha Mukti Kendra (De-Addiction Management System) is a centralized web application designed to streamline the operations of rehabilitation centers and track beneficiary progress. It enables efficient center management, beneficiary monitoring, statistical reporting, and data-driven insights to support India’s Nasha Mukti mission.
+Nasha Mukti Kendra is a centralized web application designed to streamline rehabilitation center operations, track beneficiaries, and generate statistical insights to support India’s de-addiction initiative.
 
 Team
 
@@ -25,55 +25,55 @@ Arnav Singh
 Features
 📊 Dashboard
 
-Real-time statistics with interactive visualizations:
+Real-time statistics with:
 
-Total registered centers
+Total centers count
 
-Active beneficiaries count
+Active beneficiaries
 
-Success rate insights
+Success rate tracking
 
-State-wise center distribution
+State-wise distribution
 
-Addiction-type distribution
+Addiction type distribution
 
-Monthly admissions trend
+Monthly admissions trends
 
-Built-in Dark Mode
+Dark mode support
 
 🏥 Center Management
 
 Add new rehabilitation centers
 
-Track capacity vs. occupancy
+Track capacity & occupancy
 
-Manage contact details, location & center metadata
+Manage contact, location & details
 
 👤 Beneficiary Management
 
-Register and track beneficiaries
+Register beneficiaries
 
-Monitor admission dates and recovery progress
+Track admission & recovery status
 
-Record interventions, outcomes & activity logs
+Record interventions and outcomes
 
 📚 Records & Analytics
 
-Filterable and searchable beneficiary records
+Searchable & filterable records
 
-Rich statistical analysis
+Detailed statistical analysis
 
 Interactive Chart.js visualizations
 
-Advanced filters (state, addiction type, recovery status)
+Advanced filtering by state, addiction type, status
 
 🔐 User Authentication
 
-Secure login system
+Role-based access control (Admin/Client)
 
-Role-based access (Admin & Client)
+Secure login & registration
 
-Session-based authentication and protected routes
+Session management
 
 Project Structure
 nashamukti/
@@ -102,7 +102,7 @@ Frontend
 
 HTML5
 
-Tailwind CSS (CDN)
+Tailwind CSS
 
 JavaScript
 
@@ -110,7 +110,7 @@ Chart.js
 
 Font Awesome
 
-AOS (Animate On Scroll)
+AOS Animations
 
 Backend
 
@@ -118,7 +118,7 @@ PHP
 
 MySQL / MariaDB
 
-Session-based authentication
+Session-based Authentication
 
 Prerequisites
 
@@ -130,30 +130,29 @@ Apache/Nginx
 
 Modern browser
 
-Installation Guide
+Installation
 1. Web Server Setup
 
-Use XAMPP/WAMP/MAMP.
-Place project folder in your server root:
+Place project in your server root:
 
 C:\xampp\htdocs\nashamukti\
 
 2. Database Setup
 
-Create database: nasha_mukti1_db
+Create DB: nasha_mukti1_db
 
-Visit setup_db.php in your browser
+Run: setup_db.php
 
-Tables + sample data will be generated automatically
+Tables + sample data auto-generated
 
 3. Configuration
 
-Edit DB credentials in:
+Edit DB config in:
 
 config/db.php
 
 
-Default settings:
+Default:
 
 Host: localhost
 
@@ -166,11 +165,7 @@ Database: nasha_mukti1_db
 Database Schema
 centers
 
-id (PK)
-
-name
-
-address, state, city
+id, name, address, state, city
 
 contact_person, phone, email
 
@@ -180,13 +175,9 @@ created_at
 
 beneficiaries
 
-id (PK)
-
-center_id (FK)
+id, center_id
 
 name, age, gender
-
-address, phone
 
 addiction_type
 
@@ -198,9 +189,7 @@ created_at
 
 interventions
 
-id (PK)
-
-beneficiary_id (FK)
+id, beneficiary_id
 
 intervention_type
 
@@ -214,27 +203,15 @@ created_at
 
 addiction_types
 
-id (PK)
-
-name
-
-count
+id, name, count
 
 monthly_admissions
 
-id (PK)
-
-month, year
-
-count
-
-created_at
+id, month, year, count
 
 users
 
-id (PK)
-
-username, password
+id, username, password
 
 email
 
@@ -243,77 +220,51 @@ role (admin/client)
 created_at
 
 Usage
-1. Initial Setup
-
-Visit:
-
-/setup_db.php
-
-
-Creates tables + inserts initial sample data.
-
-2. Login Credentials
-
-Default Admin
+Admin Login
 
 Username: admin
 
 Password: admin123
 
-Users can create their own accounts as well.
+Adding Centers
 
-3. Add Centers
+Admin adds centers using Add Center page.
 
-(Admin only)
-Fill out center details via Add Center page.
+Beneficiary Management
 
-4. Manage Beneficiaries
+Register beneficiaries, track admissions, interventions, recovery.
 
-Add new beneficiaries
+Viewing Records
 
-Assign them to centers
+Filter by state, addiction type, status.
 
-Track progress & interventions
+Statistics Dashboard
 
-5. View Records
-
-Access complete beneficiary list
-
-Search and filter
-
-Visit Statistics for charts & insights
-
-6. UI / Theme
-
-Includes dark mode toggle with saved preferences via local storage.
+Interactive charts loaded via Chart.js.
 
 Deployment
 
-The project is currently live at:
+Already hosted at:
 http://nashamukti.ct.ws/
 
-To deploy on your own server:
+To deploy on your server:
 
-Upload project files
+Upload files
 
-Create database and update db.php
+Create database
+
+Update db.php
 
 Run setup_db.php
 
-Access the domain via browser
-
 Maintenance
 
-Perform periodic database backups
+Take regular DB backups
 
-Ensure update_stats.php runs properly
+Keep PHP & MySQL updated
 
-Keep PHP & MySQL updated to stable versions
-
-Support
-
-For help, contact the development team or open an issue in the repository.
+Ensure update_stats.php runs correctly
 
 License
 
-Released under the MIT License.
+MIT License
