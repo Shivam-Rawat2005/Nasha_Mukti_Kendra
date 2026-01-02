@@ -7,14 +7,23 @@ require_once __DIR__ . '/db.php';
 // Create users table if it doesn't exist
 $sql = "CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
     role ENUM('admin', 'client') NOT NULL DEFAULT 'client',
+    google_id VARCHAR(255) UNIQUE,
+    google_profile_picture VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 
 $conn->query($sql);
+
+// Add Google columns if they don't exist (for existing databases)
+$checkGoogleId = $conn->query("SHOW COLUMNS FROM users LIKE 'google_id'");
+if ($checkGoogleId->num_rows == 0) {
+    $conn->query("ALTER TABLE users ADD COLUMN google_id VARCHAR(255) UNIQUE");
+    $conn->query("ALTER TABLE users ADD COLUMN google_profile_picture VARCHAR(500)");
+}
 
 // Insert default admin user if not exists
 $default_admin = "INSERT INTO users (username, password, email, role) 

@@ -1,6 +1,7 @@
 <?php
 require_once 'config/db.php';
 require_once 'config/auth.php';
+require_once 'config/google.php';
 
 // Redirect if already logged in
 if (isLoggedIn()) {
@@ -9,6 +10,7 @@ if (isLoggedIn()) {
 }
 
 $error = '';
+$google = initializeGoogleOAuth();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
@@ -181,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         </form>
                         
-                        <!-- <div class="mt-8">
+                        <div class="mt-8">
                             <div class="relative">
                                 <div class="absolute inset-0 flex items-center">
                                     <div class="w-full border-t border-gray-300"></div>
@@ -189,16 +191,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="relative flex justify-center text-sm">
                                     <span class="px-2 bg-white text-gray-500">Or continue with</span>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div class="mt-6 grid grid-cols-2 gap-3">
-                                <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all hover:-translate-y-1">
-                                    <i class="fab fa-google text-red-500 mr-2"></i> Google
+                            <div class="mt-6">
+                                <a href="<?php echo htmlspecialchars($google->getLoginUrl()); ?>" 
+                                   class="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all hover:-translate-y-1">
+                                    <i class="fab fa-google text-red-500 mr-2"></i> Login with Google
                                 </a>
-                                <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all hover:-translate-y-1">
-                                    <i class="fab fa-facebook-f text-blue-600 mr-2"></i> Facebook
-                                </a>
-                            </div> -->
+                            </div>
                             
                             <div class="mt-8 text-center">
                                 <p class="text-sm text-gray-600">
